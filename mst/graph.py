@@ -41,6 +41,7 @@ class Graph:
         `heapify`, `heappop`, and `heappush` functions.
 
         """
+        """
         self.mst = []  # Initialize mst as a priority queue
         heapq.heapify(self.mst)
 
@@ -56,4 +57,8 @@ class Graph:
             if next_v not in visited:
                 heapq.heappush(self.mst, next_v)  # Add edge to mst
                 visited.add(next_v)
+        """
+        self.mst = None
+        pass
+
 
