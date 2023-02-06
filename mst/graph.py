@@ -41,4 +41,19 @@ class Graph:
         `heapify`, `heappop`, and `heappush` functions.
 
         """
-        self.mst = None
+        self.mst = []  # Initialize mst as a priority queue
+        heapq.heapify(self.mst)
+
+        visited = set()  # Initialize a set to keep track of visited nodes
+
+        outgoing_edges = []  # Initialize outgoing_edges as a priority queue
+        heapq.heapify(outgoing_edges)
+
+        while v not in visited:
+            # Pop lowest weight edge from priority queue
+            heapq.heappop(outgoing_edges)
+
+            if next_v not in visited:
+                heapq.heappush(self.mst, next_v)  # Add edge to mst
+                visited.add(next_v)
+
