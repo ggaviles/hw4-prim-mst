@@ -9,6 +9,11 @@ readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
+dependencies = [
+    "numpy",
+    "heapq",
+    "typing"
+]
 
 [project.urls]
 Home = "https://github.com/ggaviles/hw4-prim-mst/main/mst"
