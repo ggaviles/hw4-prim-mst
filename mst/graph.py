@@ -79,9 +79,12 @@ class Graph:
             if curr_node not in visited:  # Check if neighboring node is already in visited
                 visited.add(curr_node)
                 self.mst.append(shortest_edge)  # Add edge to mst
-                neighbor_edges = [_ for _ in self.adj_mat[curr_node]]
-                hq.heappush(heap, neighbor_edges)
+                #neighbor_edges = [_ for _ in self.adj_mat[curr_node]]
+                for i in self.adj_mat[curr_node]:
+                    hq.heappush(heap, i)
 
+        self.mst = [int(x) for x in self.mst]
+        self.mst = np.array(self.mst)
 
 
 

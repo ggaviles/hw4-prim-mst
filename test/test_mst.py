@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 from mst import Graph
 from sklearn.metrics import pairwise_distances
-
+import networkx as nx
 
 def check_mst(adj_mat: np.ndarray, 
               mst: np.ndarray, 
@@ -42,7 +42,7 @@ def test_mst_small():
     Unit test for the construction of a minimum spanning tree on a small graph.
     
     """
-    file_path = './data/small.csv'
+    file_path = '../data/small.csv'
     g = Graph(file_path)
     g.construct_mst()
     check_mst(g.adj_mat, g.mst, 8)
@@ -57,7 +57,7 @@ def test_mst_single_cell_data():
     https://bioconductor.org/packages/release/bioc/html/slingshot.html
 
     """
-    file_path = './data/slingshot_example.txt'
+    file_path = '../data/slingshot_example.txt'
     coords = np.loadtxt(file_path) # load coordinates of single cells in low-dimensional subspace
     dist_mat = pairwise_distances(coords) # compute pairwise distances to form graph
     g = Graph(dist_mat)
@@ -71,4 +71,22 @@ def test_mst_student():
     TODO: Write at least one unit test for MST construction.
     
     """
-    pass
+    # Generate a random weighted, undirected graph
+    G = nx.gnp_random_graph(10, 0.3, 138)
+
+    # Generate an adjacency matrix from that graph
+    A = nx.adjacency_matrix(G)
+
+    # Create an instance of the graph object with the random adjacency matrix as an input
+    g = Graph(A)
+
+    # Construct the mst
+    g.construct_mst()
+
+    # Construct an mst using networkx
+    T = nx.minimum_spanning_tree(G)
+
+    # Check that all edges are in both
+
+
+

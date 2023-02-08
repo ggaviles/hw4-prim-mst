@@ -27,9 +27,6 @@ jobs:
       - name: Install numpy
         run: |
           pip install numpy
-      - name: Install heapq
-        run: |
-          pip install heapq
       - name: Test with pytest
         run: |
           python -m pytest -vv tests/*py
