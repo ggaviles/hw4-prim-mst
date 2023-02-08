@@ -61,34 +61,26 @@ class Graph:
                 hq.heappush(self.mst, next_v)  # Add edge to mst
                 visited.add(next_v)"""
 
-        # Initialize mst
         self.mst = []
+        visited = set()
 
-        # Generate a random starting index in order to randomly choose a node from which to build the mst
-        random_starting_index = np.random.randint(0, len(self.adj_mat))
+        random_starting_node = np.random.randint(0, len(self.adj_mat))
+        self.adj_mat[self.adj_mat == 0] = np.inf  # Replace all zeros with infinity
+        heap = [_ for _ in self.adj_mat[random_starting_node]]  # Return edges for random node
+        hq.heapify(heap)  # Heapify heap
 
-        visited = set()  # Initialize set of visited nodes
-        visited.add(random_starting_index)  # Add starting nodes
+        visited.add(random_starting_node)  # Add first node to visited
 
-        # Starting node's smallest edge
-        next_edge = min([x for x in self.adj_mat[random_starting_index] if x > 0])
+        curr_node = random_starting_node
 
-        # Add edge to mst
-        self.mst.append(next_edge)
-
-        # Next node in mst (finds index for which distance is least)
-        next_node, = np.where(self.adj_mat[random_starting_index] == next_edge)
-
-        # Add node to visited set
-        visited.add(next_node)
-
-
-        for i,j in enumerate(self.adj_mat):
-
-
-
-        while len(visited) != len(self.adj_mat):
-
+        while heap and len(visited) != len(self.adj_mat):
+            shortest_edge = hq.heappop(heap)  # Pop shortest_edge
+            curr_node = self.adj_mat[curr_node].tolist().index(shortest_edge)  # Assign index to next node
+            if curr_node not in visited:  # Check if neighboring node is already in visited
+                visited.add(curr_node)
+                self.mst.append(shortest_edge)  # Add edge to mst
+                neighbor_edges = [_ for _ in self.adj_mat[curr_node]]
+                hq.heappush(heap, neighbor_edges)
 
 
 
