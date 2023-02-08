@@ -11,8 +11,6 @@ classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 dependencies = [
     "numpy",
-    "heapq",
-    "typing"
 ]
 
 [project.urls]

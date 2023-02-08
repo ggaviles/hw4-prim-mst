@@ -1,5 +1,5 @@
 import numpy as np
-import heapq
+import heapq as hq
 from typing import Union
 
 class Graph:
@@ -41,24 +41,51 @@ class Graph:
         `heapify`, `heappop`, and `heappush` functions.
 
         """
-        """
-        self.mst = []  # Initialize mst as a priority queue
-        heapq.heapify(self.mst)
+
+        """self.mst = [] # Initialize mst
 
         visited = set()  # Initialize a set to keep track of visited nodes
 
         outgoing_edges = []  # Initialize outgoing_edges as a priority queue
-        heapq.heapify(outgoing_edges)
+        hq.heapify(outgoing_edges)
+
+        self.mst.append(self.adj_mat[0])
+        
+
 
         while v not in visited:
             # Pop lowest weight edge from priority queue
-            heapq.heappop(outgoing_edges)
+            hq.heappop(outgoing_edges)
 
             if next_v not in visited:
-                heapq.heappush(self.mst, next_v)  # Add edge to mst
-                visited.add(next_v)
-        """
-        self.mst = None
-        pass
+                hq.heappush(self.mst, next_v)  # Add edge to mst
+                visited.add(next_v)"""
+
+        # Initialize mst
+        self.mst = []
+
+        # Generate a random starting index in order to randomly choose a node from which to build the mst
+        random_starting_index = np.random.randint(0, len(self.adj_mat))
+
+        visited = set()  # Initialize set of visited nodes
+        visited.add(random_starting_index)  # Add starting nodes
+
+        # Starting node's smallest edge
+        next_edge = min([x for x in self.adj_mat[random_starting_index] if x > 0])
+
+        # Add edge to mst
+        self.mst.append(next_edge)
+
+        # Next node in mst (finds index for which distance is least)
+        next_node, = np.where(self.adj_mat[random_starting_index] == next_edge)
+
+        # Add node to visited set
+        visited.add(next_node)
+
+
+        for i in self.adj_mat[random_starting_index]:
+
+
+
 
 
