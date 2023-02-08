@@ -50,28 +50,47 @@ class Graph:
 
         # Choose a random starting node within the domain of the adjacency matrix size
         random_starting_node = np.random.randint(0, len(self.adj_mat))
-        self.adj_mat[self.adj_mat == 0] = np.inf  # Replace all zeros with infinity
-        heap = [_ for _ in self.adj_mat[random_starting_node]]  # Return edges for random node
+
+        # Create a version of the adjacency matrix where all zeros are infinity
+        adjacency_matrix = self.adj_mat
+        adjacency_matrix[adjacency_matrix == 0] = np.inf  # Replace all zeros with infinity
+
+        heap = [_ for _ in adjacency_matrix[random_starting_node]]  # Return edges for random node
         hq.heapify(heap)  # Heapify heap
+        print(heap)
 
         visited.add(random_starting_node)  # Add first node to visited
+        print(visited)
 
         # Set the starting node to be the current node
-        curr_node = random_starting_node
+        prev_node = random_starting_node
 
-        while heap and len(visited) != len(self.adj_mat):
+        # Initialize mst as empty adjacency matrix
+        self.mst = np.zeros((len(self.adj_mat), len(self.adj_mat)))
+
+        while heap and len(visited) != len(adjacency_matrix):
             shortest_edge = hq.heappop(heap)  # Pop shortest_edge
-            curr_node = self.adj_mat[curr_node].tolist().index(shortest_edge)  # Assign index to next node
+            print(shortest_edge)
+            curr_node = adjacency_matrix[prev_node].tolist().index(shortest_edge)  # Assign index to next node
+            print(curr_node)
+            print(self.mst)
             if curr_node not in visited:  # Check if neighboring node is already in visited
                 visited.add(curr_node)
-                self.mst.append(shortest_edge)  # Add edge to mst
+                print(visited)
+                self.mst[prev_node][curr_node] = shortest_edge
+                self.mst[curr_node][prev_node] = shortest_edge
                 #neighbor_edges = [_ for _ in self.adj_mat[curr_node]]
-                for i in self.adj_mat[curr_node]:
+                for i in adjacency_matrix[curr_node]:
                     hq.heappush(heap, i)
+                #for i in adjacency_matrix[curr_node]:
+                    #hq.heappush(heap, i)
+                #prev_node = curr_node
+            prev_node = curr_node
+            print(heap)
 
-        self.mst = [int(x) for x in self.mst]
-        self.mst = np.array(self.mst)
 
+        self.mst = np.array(self.mst).astype(int)
+        print(self.mst)
 
 
 

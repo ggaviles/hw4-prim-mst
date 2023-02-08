@@ -36,7 +36,7 @@ def check_mst(adj_mat: np.ndarray,
     assert approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
 
     # Check that the dimensions of both the adjacency matrix and mst are the same
-    assert
+
 
 def test_mst_small():
     """
