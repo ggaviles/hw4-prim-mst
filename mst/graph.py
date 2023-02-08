@@ -83,7 +83,14 @@ class Graph:
         visited.add(next_node)
 
 
-        for i in self.adj_mat[random_starting_index]:
+        for i,j in enumerate(self.adj_mat):
+
+
+
+        while len(visited) != len(self.adj_mat):
+
+
+
 
 
 
