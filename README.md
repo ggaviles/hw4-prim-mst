@@ -6,7 +6,7 @@ In this assignment, you'll implement Prim's algorithm, a non-trivial greedy algo
 
 ### Coding
 
-* [TODO] Complete the `construct_mst` method found in `mst/graph.py`. All necessary modules have already been imported. You should not rely on any other dependencies (e.g. networkx). 
+* [X] Complete the `construct_mst` method found in `mst/graph.py`. All necessary modules have already been imported. You should not rely on any other dependencies (e.g. networkx). 
 
 ### Development
 
