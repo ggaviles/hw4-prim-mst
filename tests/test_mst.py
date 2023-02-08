@@ -41,7 +41,7 @@ def check_mst(adj_mat: np.ndarray,
 def test_mst_small():
     """
     
-    Unit test for the construction of a minimum spanning tree on a small graph.
+    Unit tests for the construction of a minimum spanning tree on a small graph.
     
     """
     file_path = '../data/small.csv'
@@ -53,7 +53,7 @@ def test_mst_small():
 def test_mst_single_cell_data():
     """
     
-    Unit test for the construction of a minimum spanning tree using single cell
+    Unit tests for the construction of a minimum spanning tree using single cell
     data, taken from the Slingshot R package.
 
     https://bioconductor.org/packages/release/bioc/html/slingshot.html
@@ -70,7 +70,7 @@ def test_mst_single_cell_data():
 def test_mst_student():
     """
     
-    TODO: Write at least one unit test for MST construction.
+    TODO: Write at least one unit tests for MST construction.
     
     """
     # Generate a random weighted, undirected graph
