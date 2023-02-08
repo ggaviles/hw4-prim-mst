@@ -19,7 +19,7 @@ class Graph:
             self.adj_mat = adjacency_mat
         else: 
             raise TypeError('Input must be a valid path or an adjacency matrix')
-        self.mst = None
+        self.mst = []
 
     def _load_adjacency_matrix_from_csv(self, path: str) -> np.ndarray:
         with open(path) as f:
@@ -42,28 +42,13 @@ class Graph:
 
         """
 
-        """self.mst = [] # Initialize mst
-
-        visited = set()  # Initialize a set to keep track of visited nodes
-
-        outgoing_edges = []  # Initialize outgoing_edges as a priority queue
-        hq.heapify(outgoing_edges)
-
-        self.mst.append(self.adj_mat[0])
-        
-
-
-        while v not in visited:
-            # Pop lowest weight edge from priority queue
-            hq.heappop(outgoing_edges)
-
-            if next_v not in visited:
-                hq.heappush(self.mst, next_v)  # Add edge to mst
-                visited.add(next_v)"""
-
+        # Initialize self.mst as empty list
         self.mst = []
+
+        # Initialize visited as an empty set
         visited = set()
 
+        # Choose a random starting node within the domain of the adjacency matrix size
         random_starting_node = np.random.randint(0, len(self.adj_mat))
         self.adj_mat[self.adj_mat == 0] = np.inf  # Replace all zeros with infinity
         heap = [_ for _ in self.adj_mat[random_starting_node]]  # Return edges for random node
@@ -71,6 +56,7 @@ class Graph:
 
         visited.add(random_starting_node)  # Add first node to visited
 
+        # Set the starting node to be the current node
         curr_node = random_starting_node
 
         while heap and len(visited) != len(self.adj_mat):
